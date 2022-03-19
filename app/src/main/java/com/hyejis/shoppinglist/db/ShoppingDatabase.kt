@@ -9,7 +9,7 @@ import com.hyejis.shoppinglist.db.entities.ShoppingItem
 
 @Database(
     entities = [ShoppingItem::class],
-    version = 1
+    version = 1, exportSchema = false
 )
 abstract class ShoppingDatabase : RoomDatabase() {  //Room 데이터베이스 세팅
 
@@ -26,8 +26,10 @@ abstract class ShoppingDatabase : RoomDatabase() {  //Room 데이터베이스 �
         }
 
         private fun createDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext,
-            ShoppingDatabase::class.java, "ShoppingDB.db").build()
+            Room.databaseBuilder(
+                context.applicationContext,
+            ShoppingDatabase::class.java,
+                "ShoppingDB.db").allowMainThreadQueries().build()
     }
 
 }
